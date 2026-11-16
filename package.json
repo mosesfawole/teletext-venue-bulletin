@@ -1,0 +1,16 @@
+{
+  "name": "teletext-kiroween",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Teletext venue bulletin prototype for the Kiroween Resurrection — local SSE, authenticated staff editing, late join, monotonic revisions, disconnect state, and an equal-slot scheduling benchmark. Builtin Node dependencies only.",
+  "scripts": {
+    "start": "node src/main.js",
+    "test": "node --test",
+    "bench": "node sim/benchmark.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#07070a">
+  <meta name="description" content="Teletext Kiroween — live venue bulletin viewer.">
+  <title>Teletext Kiroween — Viewer</title>
+  <link rel="stylesheet" href="/core.css">
+  <link rel="stylesheet" href="/viewer.css">
+</head>
+<body>
+  <div class="crt" aria-hidden="true"></div>
+
+  <main class="viewer">
+    <header class="v-head">
+      <div class="wordmark">TELETEXT <span class="dot">·</span> KIROWEEN</div>
+      <span id="status" class="badge is-connecting" aria-live="polite">
+        <span class="led"></span><span id="status-text">connecting</span>
+      </span>
+    </header>
+
+    <div class="v-event" id="event-line" hidden></div>
+
+    <section class="v-page panel">
+      <div class="v-page-head">
+        <div class="v-page-id">
+          <div class="label">Page</div>
+          <div class="v-num" id="page-num">201</div>
+          <div class="v-title" id="page-title">—</div>
+        </div>
+        <div class="v-meta">
+          <div class="label">Rev</div>
+          <div class="v-rev" id="page-rev">—</div>
+          <div class="label" style="margin-top: 0.7em">Time · venue</div>
+          <div class="v-time" id="page-time-local">—</div>
+          <div class="v-time-utc" id="page-time-utc"></div>
+        </div>
+      </div>
+      <div class="v-body" id="page-body">
+        <div class="state-msg"><div class="big" style="color: var(--ink-dim)">connecting</div>
+          <div class="state-sub">linking to transmitter…</div></div>
+      </div>
+    </section>
+
+    <section class="v-tune panel">
+      <form id="tune-form" class="tune-form" autocomplete="off">
+        <label class="label" for="tune-input">Tune to page</label>
+        <div class="tune-row">
+          <input id="tune-input" class="input" type="number" inputmode="numeric"
+                 min="100" max="999" step="1" value="201" aria-label="Page number">
+          <button class="btn btn-primary" type="submit">Tune</button>
+        </div>
+        <div class="tune-quick" id="tune-quick" role="group" aria-label="Bulletin pages"></div>
+      </form>
+      <div class="v-signal" id="signal" hidden></div>
+    </section>
+  </main>
+
+  <script src="/viewer.js" defer></script>
+</body>
+</html>

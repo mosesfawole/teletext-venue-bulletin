@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#07070a">
+  <meta name="robots" content="noindex">
+  <meta name="description" content="Teletext Kiroween — staff authoring.">
+  <title>Teletext Kiroween — Staff</title>
+  <link rel="stylesheet" href="/core.css">
+  <link rel="stylesheet" href="/staff/staff.css">
+</head>
+<body>
+  <div class="crt" aria-hidden="true"></div>
+
+  <main class="staff">
+    <!-- Login view -->
+    <section id="login-view" class="login card panel">
+      <div class="wordmark">TELETEXT <span class="dot">·</span> STAFF</div>
+      <h1 class="login-title">Staff sign in</h1>
+      <p class="muted">Edit the venue bulletin. Authorised staff only.</p>
+      <form id="login-form" class="login-form" autocomplete="on">
+        <label class="label" for="login-pass">Staff secret</label>
+        <input id="login-pass" class="input" type="password" name="password"
+               autocomplete="current-password" required>
+        <div id="login-error" class="form-error" role="alert" hidden></div>
+        <button class="btn btn-primary" type="submit" id="login-btn">Sign in</button>
+      </form>
+      <p class="faint small">The secret is configured on the transmitter via the
+        <span class="kbd">STAFF_SECRET</span> environment variable. If editing is
+        disabled there, sign-in is rejected.</p>
+    </section>
+
+    <!-- Editor view -->
+    <section id="editor-view" class="editor" hidden>
+      <header class="s-head">
+        <div class="wordmark">TELETEXT <span class="dot">·</span> STAFF</div>
+        <div class="s-head-right">
+          <span id="conn" class="badge is-connecting" aria-live="polite">
+            <span class="led"></span><span id="conn-text">checking…</span>
+          </span>
+          <button id="logout-btn" class="btn btn-danger" type="button">Sign out</button>
+        </div>
+      </header>
+
+      <section class="card panel s-page">
+        <div class="s-page-head">
+          <div class="s-page-id">
+            <div class="label">Page</div>
+            <div class="s-num">201</div>
+            <div class="s-title" id="s-title">Workshops</div>
+          </div>
+          <div class="s-meta">
+            <div class="label">Rev</div>
+            <div class="s-rev" id="s-rev">—</div>
+            <div class="label" style="margin-top: 0.5em">Updated · venue</div>
+            <div class="s-time" id="s-time-local">—</div>
+            <div class="s-time-utc" id="s-time-utc"></div>
+          </div>
+        </div>
+
+        <div class="s-grid">
+          <div class="s-col">
+            <div class="label">Workshops (current)</div>
+            <div class="ws-table" id="ws-table"></div>
+          </div>
+          <div class="s-col">
+            <div class="label">Change a room</div>
+            <form id="edit-form" class="edit-form" autocomplete="off">
+              <label class="label" for="edit-ws">Workshop</label>
+              <select id="edit-ws" class="input"></select>
+              <label class="label" for="edit-room" style="margin-top: 0.7rem">New room</label>
+              <input id="edit-room" class="input" type="text" maxlength="40"
+                     placeholder="e.g. Room B">
+              <button class="btn btn-primary" type="submit" id="edit-btn"
+                      style="margin-top: 0.85rem">Save room</button>
+              <div id="edit-status" class="edit-status" role="status" aria-live="polite" hidden></div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="card panel s-sched">
+        <div class="label">Carousel schedule</div>
+        <div class="sched-radios" id="sched-radios" role="group" aria-label="Schedule">
+          <label class="radio"><input type="radio" name="sched" value="fixed"><span>fixed</span></label>
+          <label class="radio"><input type="radio" name="sched" value="priority"><span>priority</span></label>
+        </div>
+        <div class="s-carousel muted" id="s-carousel">—</div>
+        <div id="sched-status" class="edit-status" role="status" aria-live="polite" hidden></div>
+        <p class="faint small">Priority repeats page 201 three times per cycle
+          (urgent mean wait 1.5s, routine 3.5s). Fixed cycles each page once
+          (all pages 2.5s mean). Editing the room bumps only page 201's revision.</p>
+      </section>
+    </section>
+  </main>
+
+  <script src="/staff/staff.js" defer></script>
+</body>
+</html>
